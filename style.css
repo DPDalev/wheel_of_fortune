@@ -1,0 +1,25 @@
+body {
+    background-color: #f0f0f0;
+    font-family: PFFusionSansPro-Black
+  }
+  
+  h1 {
+    color: #333;
+  }
+
+
+  #wheel {
+      display: inline;
+      position: relative;
+  }
+
+  #wheel-container {
+    display: inline-block;
+    left: 224px;
+    top: 135px;
+  }
+
+  #startButton {
+    font-weight: bold;
+    font-size: 20px;
+  }
