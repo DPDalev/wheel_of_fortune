@@ -7,7 +7,6 @@ body {
     color: #333;
   }
 
-
   #wheel {
       display: inline;
       position: relative;
@@ -17,6 +16,7 @@ body {
     display: inline-block;
     left: 224px;
     top: 135px;
+    border: 1px solid black
   }
 
   #startButton {
