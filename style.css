@@ -7,10 +7,14 @@ body {
     color: #333;
   }
 
-  #wheel {
-      display: inline;
-      position: relative;
-  }
+#wheel {
+    position: relative;
+}
+
+#arrow {
+    display: inline-block;
+    position: relative;
+}
 
   #wheel-container {
     display: inline-block;

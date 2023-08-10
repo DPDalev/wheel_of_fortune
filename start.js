@@ -21,6 +21,11 @@ start = () => {
 
     let index = 0;
 
+    let arrow = document.getElementById("arrow");
+    let containerWidth = document.getElementById("wheel-container").style.width
+    let arrowWidth = arrow.style.width
+    arrow.style.marginLeft = containerWidth - arrowWidth / 2
+
     document.getElementById("startButton").addEventListener("click", () => {
         rotate(index);
         index++
