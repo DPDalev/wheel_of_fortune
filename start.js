@@ -1,7 +1,8 @@
 const params = {
     rotation: 0,
-    speed: 5,
+    speed: 3,
     angle: 0,
+    sectorsCount: 18,
     sectors: [
         0,
         14,
@@ -22,21 +23,27 @@ start = () => {
     let index = 0;
 
     let arrow = document.getElementById("arrow");
-    let containerWidth = document.getElementById("wheel-container").style.width
-    let arrowWidth = arrow.style.width
-    arrow.style.marginLeft = containerWidth - arrowWidth / 2
+    let containerWidth = document.getElementById("wheel-container").style.width;
+    let arrowWidth = arrow.style.width;
+    arrow.style.marginLeft = containerWidth - arrowWidth / 2;
 
     document.getElementById("startButton").addEventListener("click", () => {
         rotate(index);
-        index++
+        index++;
     })
 }
 
 rotate = (index) => {
-    // params.angle = (params.sectors[index] + 2)/ 18 * (180 + params.angle)
-    params.angle = params.sectors[index] / 18 * 180 + params.speed * 360
+    let sectorAngle =  params.sectors[index] / params.sectorsCount * 360;
+    let wheelSpeed = params.speed * 360;
 
-    console.log(index, params.sectors[index], params.angle)
+    params.angle = sectorAngle + wheelSpeed
+    console.log(` index: ${index},\n Sector: ${params.sectors[index]},\n Sector angle: ${sectorAngle}`);
+    
+    gsap.to("#wheel", {
+        rotation: 0,
+        duration: 0.01
+    });
 
     gsap.to("#wheel", {
         rotation: params.angle,
