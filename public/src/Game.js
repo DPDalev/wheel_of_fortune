@@ -1,13 +1,29 @@
-export default class Game {
+class Game {
     constructor() {
-        this.state = "Idle"
+        this._state = "Idle"
+        this.button = document.getElementById("spinButton")
+    }
+
+    logState() {
+        console.log("STATE from class: ", this._state)
     }
 
     get state() {
-        return this.state
+        return this._state
     }
 
     set state(newState) {
-        this.state = newState
+        this._state = newState
+        this.logState()
+    }
+
+    whatButton() {
+        console.log("dxsfkjghfdhgfdjk", this.button)
+    }
+
+    toggleStartButton() {
+        this.button.disabled = !this.button.disabled
     }
 }
+
+export default new Game

@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     background-color: #f0f0f0;
     font-family: PFFusionSansPro-Black
   }
@@ -6,27 +7,48 @@ body {
   h1 {
     color: #333;
   }
+  
+  #wheel-container {
+      display: inline-block;
+      left: 224px;
+    top: 135px;
+    width: 696px;
+    height: 755px;
+    border: 1px solid black
+}
 
 #wheel {
     position: relative;
+    top: 58px
 }
 
 #arrow {
-    display: inline-block;
     position: relative;
+    top: -88%;
+    left: 28%;
 }
 
-  #wheel-container {
-    display: inline-block;
-    left: 224px;
-    top: 135px;
-    border: 1px solid black
+#win-container {
+    display: block;
+    font-size: 80px;
+}
+
+
+
+
+  #spin-button {
+    position: relative;
+    top: -45.0%;
+    left: 42.6%;
+    font-weight: bold;
+    font-size: 39px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
   }
 
-  #startButton {
-    font-weight: bold;
-    font-size: 20px;
-  }
+
+
 
   #free-spins {
     display: inline;

@@ -1,3 +1,5 @@
+import Game from "./Game.js";
+
 const params = {
     rotation: 0,
     speed: 3,
@@ -6,7 +8,6 @@ const params = {
     sectorsCount: 18,
     win: 0,
     freeSpinsCount: 0,
-    gameState: "idle",
     // sectors: [
     //     0,
     //     14,
@@ -58,18 +59,11 @@ const params = {
 
 var freeSpinsBanner = document.getElementById("free-spins")
 
-let game
-
-
 function start() {
 
     console.log("START GAME!!!")
 
     let index = 0;
-
-    // game = new Game();
-
-    // console.log(Game.state)
 
     let arrow = document.getElementById("arrow");
     let containerWidth = document.getElementById("wheel-container").style.width;
@@ -79,8 +73,9 @@ function start() {
     // gsap.set(freeSpinsBanner, {
     //     scale: "0%"
     // })
-    updateState("Idle")
-    document.getElementById("startButton").addEventListener("click", () => {
+    Game.state = "Idle"
+    Game.logState()
+    document.getElementById("spin-button").addEventListener("click", () => {
         spin(params.index);
 
         incrementIndex()
@@ -88,7 +83,7 @@ function start() {
 }
 
 function checkWin(index) {
-    updateState("Idle")
+    Game.state = "Idle"
 
     console.log(index, params.sectors[index], params.wins[params.sectors[index]] )
     currentWin = params.wins[params.sectors[params.index]]
@@ -114,7 +109,7 @@ function checkWin(index) {
 }
 
 async function win(win) {
-    updateState("Win")
+    Game.state = "Win"
     if (currentWin === "Free Spins") {
 
         params.freeSpinsCount += 3
@@ -142,19 +137,14 @@ async function win(win) {
         params.win = params.win + currentWin
         document.getElementById("win-container").innerHTML = params.win
         console.log(`Current win: ${currentWin}, Total win: ${params.win}`)
-        updateState("Idle")
+        Game.state = "Idle"
         toggleStartButton("Win")
     }
     return
 }
 
-function updateState(state) {
-    console.log(`STATE: `, state)
-    params.gameState = state;
-}
-
 async function freeSpins() {
-    updateState("Free Spins")
+    Game.state = "Free Spins"
     toggleStartButton("Free Spins")
 
     while(params.freeSpinsCount > 0) {
@@ -167,9 +157,9 @@ async function freeSpins() {
 }
 
 async function spin(index) {
-    updateState("Spin")
+    Game.state = "Spin"
     toggleStartButton(params.gameState)
-    document.getElementById("startButton").disabled = true
+    document.getElementById("spin-button").disabled = true
 
     let sectorAngle =  params.sectors[index] / params.sectorsCount * 360;
     let wheelSpeed = params.speed * 360;
@@ -196,7 +186,7 @@ async function spin(index) {
 
 function toggleStartButton(state) {
     console.log(`TOGGLE From state: ${state}`)
-    document.getElementById("startButton").disabled = !document.getElementById("startButton").disabled
+    document.getElementById("spin-button").disabled = !document.getElementById("spin-button").disabled
 }
 
 function incrementIndex() {
