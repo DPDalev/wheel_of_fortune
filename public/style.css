@@ -27,3 +27,11 @@ body {
     font-weight: bold;
     font-size: 20px;
   }
+
+  #free-spins {
+    display: inline;
+    /* transform: scale(0); */
+    border: solid black;
+    color: red;
+    font-size: 60px;
+  }

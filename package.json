@@ -1,0 +1,28 @@
+{
+  "name": "wheel_of_fortune",
+  "version": "1.0.0",
+  "description": "Wheel of Fortune",
+  "main": "y",
+  "scripts": {
+    "test": "npm run test",
+    "dev": "webpack-dev-server --mode development --open",
+    "start": "webpack && node server.js"
+  },
+  "keywords": [
+    "7777 recruitmen task",
+    "game",
+    "wheel_of_fortune"
+  ],
+  "author": "dpdalev",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^6.7.1",
+    "script-loader": "^0.7.2",
+    "style-loader": "^3.3.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
