@@ -11,8 +11,11 @@ class Wheel {
     }
     
     async spin(index) {
-        Game.state = "Spin";
-        Game.toggleStartButton();
+        if (FreeSpinsManager.freeSpinsCount === 0) {
+            Game.state = "Spin";
+            Game.toggleStartButton();
+            document.getElementById("free-spins-message").style.display = "none";
+        }
 
         this.sectorAngle = sectors[index] * 360 / gameParams.sectorsCount;
         this.angle = this.sectorAngle + gameParams.speed * 360;
@@ -22,12 +25,15 @@ class Wheel {
             },
             {
             rotation: this.angle,
-            duration: 5,
+            duration: gameParams.spinTime,
             onComplete: this.onComplete
         });
     }
 
     onComplete() {
+        if (FreeSpinsManager.freeSpinsCount > 0) {
+            WinManager.freeSpinsPoints = wins[sectors[Game.index]];
+        }
         WinManager.currentWin = wins[sectors[Game.index]];
         Game.incrementIndex();
         

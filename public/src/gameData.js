@@ -1,5 +1,6 @@
 const gameParams = {
     speed: 3,
+    spinTime: 5,
     sectorsCount: 18,
 };
 
@@ -31,12 +32,12 @@ const sectors = [
     3,
     9,
     17,
-    14,
+    14, //Change this to 9 to observe several Free Spins
     5,
-    9,
     11,
-    14,
+    9,
     0,
+    14,
     6,
     14,
     15,
