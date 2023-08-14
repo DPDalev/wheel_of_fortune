@@ -1,61 +1,8 @@
 import Game from "./Game.js";
+import Wheel from "./Wheel.js"
+import { gameParams, wins, sectors } from "./gameData.js";
+// import wins from "./gameData.js"
 
-const params = {
-    rotation: 0,
-    speed: 3,
-    angle: 0,
-    index: 0,
-    sectorsCount: 18,
-    win: 0,
-    freeSpinsCount: 0,
-    // sectors: [
-    //     0,
-    //     14,
-    //     10,
-    //     3,
-    //     14,
-    //     9,
-    //     17,
-    //     5,
-    //     14,
-    //     9,
-    //     11
-    // ],
-    sectors: [
-        10,
-        14,
-        9,
-        10,
-        3,
-        14,
-        7,
-        17,
-        5,
-        14,
-        9,
-        11
-    ],
-    wins: [
-        100,
-        3,
-        20,
-        5,
-        40,
-        4,
-        200,
-        50,
-        0,
-        "Free Spins",
-        0,
-        30,
-        5,
-        10,
-        2,
-        40,
-        1,
-        10
-    ]
-}
 
 var freeSpinsBanner = document.getElementById("free-spins")
 
@@ -63,34 +10,24 @@ function start() {
 
     console.log("START GAME!!!")
 
-    let index = 0;
-
-    let arrow = document.getElementById("arrow");
-    let containerWidth = document.getElementById("wheel-container").style.width;
-    let arrowWidth = arrow.style.width;
-    arrow.style.marginLeft = containerWidth - arrowWidth / 2;
-    // console.log(freeSpinsBanner)
-    // gsap.set(freeSpinsBanner, {
-    //     scale: "0%"
-    // })
     Game.state = "Idle"
-    Game.logState()
     document.getElementById("spin-button").addEventListener("click", () => {
-        spin(params.index);
-
-        incrementIndex()
+        // spin(Game.index);
+        Wheel.spin(Game.index);
+        // Game.incrementIndex();
+        // Game.toggleStartButton();
     })
 }
 
 function checkWin(index) {
     Game.state = "Idle"
 
-    console.log(index, params.sectors[index], params.wins[params.sectors[index]] )
-    currentWin = params.wins[params.sectors[params.index]]
+    console.log(index, sectors[index], wins[sectors[index]] )
+    currentWin = wins[sectors[Game.index]]
 
-    toggleStartButton("Idle")
-
+    
     if (currentWin === 0) {
+        Game.toggleStartButton()
         return
     }
 
@@ -99,9 +36,11 @@ function checkWin(index) {
         freeSpins()
     }
 
-    if (params.gameState != "Free Spins" && win != "Free Spins") {
+    if (Game.state != "Free Spins" && win != "Free Spins") {
+        Game.toggleStartButton()
+
         win(currentWin);
-    } else if (params.gameState === "Free Spins" ) {
+    } else if (Game.state === "Free Spins" ) {
 
         params.freeSpinsCount += 3
 
@@ -129,72 +68,39 @@ async function win(win) {
         //     duration: 0.5
         // })
 
-        if (params.gameState != "Free Spins") {
+        if (Game.state != "Free Spins") {
             freeSpins();
         }
 
     } else {
         params.win = params.win + currentWin
-        document.getElementById("win-container").innerHTML = params.win
+        document.getElementById("points").innerHTML = params.win
         console.log(`Current win: ${currentWin}, Total win: ${params.win}`)
         Game.state = "Idle"
-        toggleStartButton("Win")
+        Game.toggleStartButton()
     }
     return
 }
 
 async function freeSpins() {
     Game.state = "Free Spins"
-    toggleStartButton("Free Spins")
+    Game.toggleStartButton();
 
     while(params.freeSpinsCount > 0) {
         console.log(`Free spins: ${params.freeSpinsCount}`)
-        incrementIndex();
+        Game.incrementIndex();
         params.freeSpinsCount--
         await spin(params.index)
     }
-    toggleStartButton("Free spins")
+    Game.toggleStartButton()
 }
 
-async function spin(index) {
-    Game.state = "Spin"
-    toggleStartButton(params.gameState)
-    document.getElementById("spin-button").disabled = true
-
-    let sectorAngle =  params.sectors[index] / params.sectorsCount * 360;
-    let wheelSpeed = params.speed * 360;
-
-    params.angle = sectorAngle + wheelSpeed
-    console.log(` params.index: ${index},\n Sector: ${params.sectors[params.index]},\n Sector angle: ${sectorAngle}`);
-
-
-    await gsap.fromTo("#wheel", {
-            rotation: 0
-        },
-        {
-        rotation: params.angle,
-        duration: 5,
-        onComplete: onComplete,
-        onCompleteParams: [index]
-    });
-
-    function onComplete() {
-        console.log("ONCOMPLETE", index);
-        checkWin(index)
-    }
-}
-
-function toggleStartButton(state) {
-    console.log(`TOGGLE From state: ${state}`)
-    document.getElementById("spin-button").disabled = !document.getElementById("spin-button").disabled
-}
-
-function incrementIndex() {
-    params.index++
-    if (params.index >= params.index.length) {
-        params.index = 0;
-    }
-}
+// function incrementIndex() {
+//     params.index++
+//     if (params.index >= params.index.length) {
+//         params.index = 0;
+//     }
+// }
 
 
 window.onload = start();

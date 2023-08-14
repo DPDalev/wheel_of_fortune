@@ -9,8 +9,8 @@ body {
   }
   
   #wheel-container {
-      display: inline-block;
-      left: 224px;
+    display: inline-block;
+    left: 224px;
     top: 135px;
     width: 696px;
     height: 755px;
@@ -22,6 +22,18 @@ body {
     top: 58px
 }
 
+#free-spins-message {
+    display: none;
+    color: red;
+    animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+
 #arrow {
     position: relative;
     top: -88%;
@@ -29,7 +41,9 @@ body {
 }
 
 #win-container {
-    display: block;
+    width: 696px;
+    display: flex;
+    justify-content: space-between;
     font-size: 80px;
 }
 
