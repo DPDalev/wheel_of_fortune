@@ -1,25 +1,19 @@
 body {
     margin: 0;
     background-color: #f0f0f0;
-    font-family: PFFusionSansPro-Black
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  #wheel-container {
-    display: inline-block;
-    left: 224px;
-    top: 135px;
-    width: 696px;
-    height: 755px;
-    border: 1px solid black
+    font-family: PFFusionSansPro-Black;
 }
 
-#wheel {
-    position: relative;
-    top: 58px
+#game-container {
+    position: absolute;
+    left: 30%;
+}
+
+#win-container {
+    width: 696px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 80px;
 }
 
 #free-spins-message {
@@ -32,25 +26,23 @@ body {
     to {
       visibility: hidden;
     }
-  }
-
-#arrow {
-    position: relative;
-    top: -88%;
-    left: 28%;
 }
-
-#win-container {
+  
+#wheel-container {
+    display: inline-block;
+    left: 224px;
+    top: 135px;
     width: 696px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 80px;
+    height: 755px;
+    background-color: white;
 }
 
+#wheel {
+    position: relative;
+    top: 58px;
+}
 
-
-
-  #spin-button {
+#spin-button {
     position: relative;
     top: -45.0%;
     left: 42.6%;
@@ -59,15 +51,11 @@ body {
     background-color: white;
     border: none;
     border-radius: 20px;
-  }
+}
 
+#arrow {
+    position: relative;
+    top: -88%;
+    left: 28%;
+}
 
-
-
-  #free-spins {
-    display: inline;
-    /* transform: scale(0); */
-    border: solid black;
-    color: red;
-    font-size: 60px;
-  }

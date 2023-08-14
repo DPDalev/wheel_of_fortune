@@ -3,8 +3,12 @@ const webpack = require( 'webpack' );
 
 module.exports = {
     entry: [
+      './public/src/FreeSpinsManager.js',
       './public/src/Game.js',
+      './public/src/gameData.js',
       './public/src/index.js',
+      './public/src/Wheel.js',
+      './public/src/WinManager.js',
     ],
     output: {
       path: __dirname,

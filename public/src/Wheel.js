@@ -1,5 +1,6 @@
 import Game from "./Game.js";
-import WinManager from "./WinManager.js"
+import WinManager from "./WinManager.js";
+import FreeSpinsManager from "./FreeSpinsManager.js";
 import { gameParams, sectors, wins } from "./gameData.js";
 
 class Wheel {
@@ -14,12 +15,7 @@ class Wheel {
         Game.toggleStartButton();
 
         this.sectorAngle = sectors[index] * 360 / gameParams.sectorsCount;
-
-        this.angle = this.sectorAngle + gameParams.speed * 360
-        
-        console.log(`INDEX: ${index} ${this.angle}`)
-
-        console.log(` params.index: ${index},\n Sector: ${sectors[index]},\n Sector angle: ${this.sectorAngle}`);
+        this.angle = this.sectorAngle + gameParams.speed * 360;
 
         await gsap.fromTo(this.wheel, {
                 rotation: 0
@@ -27,24 +23,27 @@ class Wheel {
             {
             rotation: this.angle,
             duration: 5,
-            onComplete: this.onComplete,
-            // onCompleteParams: [index]
+            onComplete: this.onComplete
         });
     }
 
     onComplete() {
-        if (Game.state != "Free Spins") {
-            Game.toggleStartButton();
-            Game.state = "Idle"
-        }
-        WinManager.currentWin = wins[sectors[Game.index]]
-        console.log("Current win: ", WinManager.currentWin)
-        // WinManager.updateTotalWin(Game.index)
-        console.log(Game.index)
+        WinManager.currentWin = wins[sectors[Game.index]];
         Game.incrementIndex();
-        console.log(Game.index)
-
+        
+        if (Game.state === "Free Spins") {
+            if (WinManager.currentWin === "Free Spins") {
+                FreeSpinsManager.incrementFreeSpinsCount();
+            }
+        } else {
+            if (WinManager.currentWin === "Free Spins") {
+                FreeSpinsManager.init();
+            } else {
+                Game.toggleStartButton();
+            }
+        }
     }
+
 }
 
-export default new Wheel
+export default new Wheel;

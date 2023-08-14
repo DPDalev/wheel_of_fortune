@@ -1,11 +1,7 @@
 const gameParams = {
     speed: 3,
-    angle: 0,
-    index: 0,
     sectorsCount: 18,
-    win: 0,
-    freeSpinsCount: 0
-}
+};
 
 const wins = [
     100,
@@ -26,34 +22,29 @@ const wins = [
     40,
     1,
     10
-]
+];
 
 const sectors = [
-    //     0,
-    //     14,
-    //     10,
-    //     3,
-    //     14,
-    //     9,
-    //     17,
-    //     5,
-    //     14,
-    //     9,
-    //     11
-    // ],
-    6,
+    14,
     10,
     14,
-    9,
-    10,
     3,
-    14,
-    7,
-    17,
-    5,
-    14,
     9,
-    11
-]
+    17,
+    14,
+    5,
+    9,
+    11,
+    14,
+    0,
+    6,
+    14,
+    15,
+    9,
+    16,
+    14,
+    12,
+    9
+];
 
-export { gameParams, wins, sectors}
+export { gameParams, wins, sectors};

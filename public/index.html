@@ -8,20 +8,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
 </head>
 <body>
-    <h1>Wheel Of Furtune</h1>
-    <!-- <h1 id="free-spins">FREE SPINS!!!</h1> -->
-    <div id="win-container">
-        <div id="points">0000</div>
-        <div id="free-spins-message">Free Spins!!!</div>
+    <div id="game-container">
+        <div id="win-container">
+            <div id="points">0000</div>
+            <div id="free-spins-message">Free Spins!!!</div>
+        </div>
+        <div id="wheel-container">
+            <img id="wheel" src="./assets/wheel.png" alt="wheel">
+            <button id="spin-button">Start</button>
+            <img id="arrow" src="./assets/arrow.png" alt="arrow">
+        </div>
     </div>
-    <div id="wheel-container">
-        <img id="wheel" src="./assets/wheel_control.png" alt="wheel">
-        <button id="spin-button">Start</button>
-        <img id="arrow" src="./assets/arrow.png" alt="arrow">
-        
-    </div>
-    
     <script type="module" src="./src/index.js"></script>
-
 </body>
 </html>
