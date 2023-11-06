@@ -1,2 +1,2 @@
 # wheel_of_fortune
-Wheel of Fortune: VanillaJS, Webpack
+Wheel of Fortune app: VanillaJS, Webpack
